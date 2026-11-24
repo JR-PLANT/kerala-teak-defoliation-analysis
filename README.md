@@ -10,13 +10,13 @@ Coming from a plant science background, this is my first data analysis project i
 
 Teak (*Tectona grandis*) is one of South India’s most prized timber trees, especially across the Nilambur Valley and Wayanad in Kerala. Every year, as the Southwest Monsoon arrives between May and July, these plantations are hit by waves of the Teak Defoliator (*Hyblaea puera*).
 
-*The caterpillars feed on fresh, tender teak leaves right when the trees should be putting on their fastest growth. A single outbreak will not usually kill a mature tree, but stripping the canopy takes away its ability to photosynthesize, which directly cuts into its yearly wood growth.
-*Pure teak plantations act as an all-you-can-eat buffet for these caterpillars, with very little shelter left for birds, wasps, and other natural predators. Retaining native understory shrubs, mixing teak with other local trees, or applying a targeted bio-pesticide (HpNPV) gives the forest a much better chance of keeping outbreaks in check.
+- The caterpillars feed on fresh, tender teak leaves right when the trees should be putting on their fastest growth. A single outbreak will not usually kill a mature tree, but stripping the canopy takes away its ability to photosynthesize, which directly cuts into its yearly wood growth.
+- Pure teak plantations act as an all-you-can-eat buffet for these caterpillars, with very little shelter left for birds, wasps, and other natural predators. Retaining native understory shrubs, mixing teak with other local trees, or applying a targeted bio-pesticide (HpNPV) gives the forest a much better chance of keeping outbreaks in check.
 
 ## Research Questions
 
-1. **Silvicultural & Biocontrol Efficacy (One-Way ANOVA):** Does canopy defoliation (`Leaves_Eaten_Pct`) differ significantly across four stand management systems (`Only_Teak`, `Teak_Understory`, `Mixed_Forest`, and `Bio_Spray`)?
-2. **Timber Growth Impact (Linear Regression):** How strongly does canopy defoliation percentage reduce annual trunk diameter growth (`Trunk_Growth_cm`)?
+1.  Does canopy defoliation (`Leaves_Eaten_Pct`) differ significantly across four stand management systems (`Only_Teak`, `Teak_Understory`, `Mixed_Forest`, and `Bio_Spray`)?
+2.  How strongly does canopy defoliation percentage reduce annual trunk diameter growth (`Trunk_Growth_cm`)?
 
 ## The Dataset
 
