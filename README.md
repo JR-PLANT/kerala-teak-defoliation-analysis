@@ -6,12 +6,12 @@ This is an applied forest entomology and biostatistics project I built in **R** 
 Coming from a plant science background, this is my first data analysis project in R. I designed this analysis to bridge field entomology with quantitative data skills—practicing reproducible data simulation, experimental hypothesis testing (**One-Way ANOVA**), growth-loss modeling (**Simple Linear Regression**), and publication-style visualizations (`ggplot2`).
 ---
 
-###  Ecological Background & Problem Statement
+### 🌍 Ecological Background & Problem Statement
 
-**Teak (*Tectona grandis*)** is one of the highest-value tropical hardwoods in South India, particularly across the Nilambur Valley and Wayanad forest divisions of Kerala. At the onset of the Southwest Monsoon (May–July), plantations experience cyclical outbreaks of the **Teak Defoliator (*Hyblaea puera*) also known as Thekkilayan in kerala**
+**Teak (*Tectona grandis*)** is one of South India’s most prized timber trees, especially across the Nilambur Valley and Wayanad in Kerala. Every year, as the Southwest Monsoon arrives between May and July, these plantations get hit by waves of the **Teak Defoliator (*Hyblaea puera*)**—known locally as ***Thekkilayan***.
 
-* **Canopy Loss During Peak Growth:** *H. puera* larvae feed on tender, newly flushed teak leaves right when radial cambial growth is highest. While single outbreaks rarely kill mature trees, severe defoliation strips photosynthetic capacity and significantly reduces annual wood volume increment.
-* **Associational Resistance & Natural Enemies:** Even-aged monoculture plantations offer continuous host foliage and limited habitat for natural predators (parasitoid wasps, insectivorous birds) and entomopathogens. Retaining native understory vegetation, mixing teak with native moist-deciduous tree species, or applying targeted ***Hyblaea puera* Nucleopolyhedrovirus (*HpNPV*)** can suppress larval outbreaks.
+* **Losing Leaves When It Matters Most:** The caterpillars feed on fresh, tender teak leaves right when the trees should be putting on their fastest growth. A single outbreak won't usually kill a mature tree, but stripping the canopy takes away its ability to make food, which directly cuts into its yearly wood growth.
+* **Why Diversity Helps:** Pure teak plantations are basically an all-you-can-eat buffet for these caterpillars, with very little shelter left for birds, wasps, and other natural predators. Leaving native shrubs on the forest floor, mixing teak with other local trees, or using a targeted bio-pesticide (***HpNPV***) gives the forest a much better chance of keeping outbreaks in check.
 
 ---
 
