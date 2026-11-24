@@ -1,58 +1,70 @@
+# Kerala Teak (*Tectona grandis*) – *Hyblaea puera* Defoliation & Timber Growth Analysis
 
-Teak Defoliator (Hyblaea puera) Analysis: Forest Management & Tree Growth
+This is an applied forest entomology and biostatistics project I built in **R** to quantify how silvicultural stand diversity and biological control influence **Teak Defoliator (*Hyblaea puera*)** outbreak severity and annual radial timber growth (**DBH increment**) in Kerala's Nilambur–Wayanad teak belt.
 
-This project explores how silvicultural management and biological control influence leaf damage caused by the teak defoliator (Hyblaea puera) also known as Thekkilayan in keralam and how that damage impacts annual tree growth in teak plantations. Outbreaks of H. puera larvae strip canopy foliage during peak growth periods, directly reducing annual wood volume increment and overall plantation productivity. I built this repository as part of my independent learning journey in R to showcase my quantitative mindset and analytical potential.
+Coming from a plant and agricultural science background, I designed this analysis to practice experimental hypothesis testing (ANOVA) and growth-loss modeling (Linear Regression) in R alongside my earlier Python work on monsoon disease forecasting.
 
-My Learning Note
+---
 
-This is my very first data analysis project in R! Coming from a forestry background, I wanted to learn how to bridge field entomology with quantitative data skills. I wrote this script step-by-step to practice turning ecological hypotheses into data simulations, performing foundational statistical tests (One-Way ANOVA and Simple Linear Regression), and creating clear data visualizations with ggplot2.
+### Ecological Background & Problem Statement
 
-What’s in This Repository
+**Teak (*Tectona grandis*)** is one of the highest-value tropical hardwoods in South India, particularly across the Nilambur Valley and Wayanad forest divisions of Kerala. At the onset of the Southwest Monsoon (May–July), plantations experience cyclical outbreaks of the **Teak Defoliator (*Hyblaea puera* Cramer, Lepidoptera: Hyblaeidae)**:
 
-teak_analysis.R: The complete R script that generates the plantation dataset, performs statistical analysis, and exports visualization plots.
+- **Canopy Loss During Peak Growth:** *H. puera* larvae feed on tender, newly flushed teak leaves right when radial cambial growth is highest. While single outbreaks rarely kill mature trees, severe defoliation strips photosynthetic capacity and significantly reduces annual wood volume increment.
+- **Associational Resistance & Natural Enemies:** Even-aged monoculture plantations offer continuous host foliage and limited habitat for natural predators (parasitoid wasps, insectivorous birds) and entomopathogens. Retaining native understory vegetation, mixing teak with native moist-deciduous tree species, or applying targeted ***Hyblaea puera* Nucleopolyhedrovirus (*HpNPV*)** can suppress larval outbreaks.
 
-teak_data.csv: A CSV file containing simulated observations for 40 forest study plots.
+---
 
-defoliation_boxplot.png: A boxplot comparing canopy leaf damage percentage across four different stand management systems.
+### Research Questions
 
-trunk_growth_loss.png: A scatter plot with a linear trendline illustrating the relationship between foliar damage and annual diameter growth loss.
+1. **Silvicultural & Biocontrol Efficacy (One-Way ANOVA):** Does canopy defoliation (`Leaves_Eaten_Pct`) differ significantly across four stand management systems (`Only_Teak`, `Teak_Understory`, `Mixed_Forest`, and `Bio_Spray`)?
+2. **Timber Growth Impact (Linear Regression):** How strongly does canopy defoliation percentage reduce annual trunk diameter growth (`Trunk_Growth_cm`)?
 
-The Dataset
+---
 
-To test these forest health questions reproducibly, I simulated a 40-plot plantation dataset (set.seed(123)) based on typical biological parameter ranges reported in Kerala forestry literature (10 plots per management type):
+### Dataset Design & Parameterization
 
-Stand_Type: The forest management regime (Only_Teak monoculture, Teak_Understory with retained native shrubs, Mixed_Forest with mixed tree species, and Bio_Spray using HpNPV bio-pesticide).
+To test these questions reproducibly without external proprietary forestry records, a **40-plot plantation dataset** (`teak_data.csv`, $n = 10$ plots per management type) was simulated in R (`set.seed(123)`) using realistic biological ranges informed by published Kerala Forest Research Institute (KFRI) teak defoliator literature:
 
-Leaves_Eaten_Pct: Estimated percentage of canopy leaf area eaten by caterpillars during peak monsoon outbreaks (0–100%).
+| Stand Management Type | Ecological / Silvicultural Context | Parameterized Mean Defoliation |
+| :--- | :--- | :--- |
+| **`Only_Teak`** | Pure even-aged teak monoculture (high host concentration) | $\sim 75\%$ ($\text{SD} = 6\%$) |
+| **`Teak_Understory`** | Teak plantation with retained native understory shrubs supporting natural enemies | $\sim 45\%$ ($\text{SD} = 6\%$) |
+| **`Mixed_Forest`** | Teak intermixed with native moist-deciduous species disrupting host-finding | $\sim 28\%$ ($\text{SD} = 5\%$) |
+| **`Bio_Spray`** | Targeted biological control using *HpNPV* applied at early larval instar stage | $\sim 20\%$ ($\text{SD} = 5\%$) |
 
-Trunk_Growth_cm: Measured annual trunk diameter growth (DBH increment) in centimeters.
+Annual radial trunk growth (`Trunk_Growth_cm`) was modeled as a linear response to foliar loss starting from a healthy baseline increment of $1.30\text{ cm/year}$, decreasing at a rate of $0.01\text{ cm}$ per percentage point of canopy defoliation plus plot-level random variation ($\text{SD} = 0.06\text{ cm}$).
 
-How to Run This
+---
 
-Anyone reviewing this repository can easily reproduce the statistical outputs and plots in R or RStudio:
+### Statistical Workflow & Key Findings
 
-Open R or RStudio on your system.
+1. **One-Way Analysis of Variance (`aov`) & Tukey's HSD (`TukeyHSD`):**
+   - Evaluates `Leaves_Eaten_Pct ~ Stand_Type` to test whether differences in mean foliar damage across stand types exceed within-group plot variation.
+   - `TukeyHSD()` performs pairwise comparisons across all four stand types, confirming statistically significant reductions ($p < 0.001$) in defoliation under `Mixed_Forest`, `Teak_Understory`, and `Bio_Spray` compared to pure `Only_Teak` stands.
+2. **Simple Linear Regression (`lm`):**
+   - Models `Trunk_Growth_cm ~ Leaves_Eaten_Pct` to quantify radial growth loss per unit increase in foliar damage.
+   - Confirms a strong negative linear relationship ($p < 0.001$), illustrating how severe early-monsoon defoliation directly translates into measurable annual DBH increment loss.
 
-Install and load ggplot2:
+---
 
-install.packages("ggplot2")
-library(ggplot2)
+### Visualizations
 
+#### 1. Canopy Defoliation Across Forest Stand Types
+![Leaf Damage Boxplot](defoliation_boxplot.png)
+*Comparison of peak monsoon defoliation (%) across the four stand management regimes (`n = 10` plots per group). Pure teak monocultures experience the highest median defoliation, whereas mixed-species stands and HpNPV biocontrol substantially reduce canopy loss.*
 
-Download and run teak_analysis.R. The script will generate teak_data.csv, display the ANOVA and regression summaries in the R console, and save both plot images to your working directory.
+#### 2. Relationship Between Canopy Defoliation and Annual Trunk Growth
+![Trunk Growth Loss](trunk_growth_loss.png)
+*Linear regression fit (`geom_smooth(method = "lm")`) with 95% confidence interval showing annual DBH increment (`cm`) declining steadily as canopy defoliation (`%`) increases.*
 
-Main Observations & Outputs
+---
 
-1. Forest Diversity and Biological Control Suppress Defoliation
+### Repository Structure
 
-Pure teak monocultures (Only_Teak) experienced the highest level of canopy damage, averaging around 75% defoliation. Incorporating natural understory vegetation (Teak_Understory) reduced leaf loss to ~45%, while mixed-species stands (Mixed_Forest) and targeted biological control (Bio_Spray) kept defoliation levels lowest, under 30%.
-
-2. Canopy Loss Directly Reduces Trunk Diameter Growth
-
-The simple linear regression revealed a strong negative relationship between canopy defoliation and radial timber increment. For every 10% increase in leaf loss, annual trunk diameter growth decreased by approximately 0.1 cm.
-
-Next Steps in My R Journey
-
-Generalized Linear Models (GLMs): Learn how to model count and proportion data that do not meet standard normality assumptions.
-
-Spatial Pest Mapping: Learn spatial R packages (sf and terra) to map insect pest outbreak risk across landscapes using GIS data.
+```text
+├── defoliation_boxplot.png    # Boxplot comparing leaf damage across stand types
+├── README.md                  # Project background, methodology, and results
+├── teak_analysis.R            # Complete R script for simulation, ANOVA, LM, and plots
+├── teak_data.csv              # Generated 40-plot plantation dataset
+└── trunk_growth_loss.png      # Linear regression plot of trunk growth vs. defoliation
