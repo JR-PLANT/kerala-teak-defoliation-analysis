@@ -1,4 +1,4 @@
-#  Kerala Teak (*Tectona grandis*) – *Hyblaea puera* Defoliation & Timber Growth Analysis
+#  Kerala Teak (*Tectona grandis*) – Thekkilayan* Defoliation & Timber Growth Analysis
 
 
 This is an applied forest entomology and biostatistics project I built in **R** to quantify how silvicultural stand diversity and biological control influence **Teak Defoliator (*Hyblaea puera*)**—locally known as ***Thekkilayan*** in Kerala—outbreak severity and annual radial timber growth (**DBH increment**) in Kerala's Nilambur–Wayanad teak belt.
@@ -82,10 +82,3 @@ Anyone reviewing this repository can easily reproduce the dataset, statistical o
    library(ggplot2)
    ```
 3. Download and run `teak_analysis.R`. The script will automatically generate `teak_data.csv`, print the ANOVA, Tukey's HSD, and regression summaries to the console, and save both plot images to your working directory.
-
----
-
-
-
-* **Generalized Linear Models (GLMs):** Model count and proportion data (such as defoliation percentages bounded between 0 and 100%) that do not meet standard normality assumptions.
-* **Spatial Pest Mapping:** Use spatial R packages (`sf` and `terra`) to map insect pest outbreak risk across the Nilambur–Wayanad landscape using GIS data.
